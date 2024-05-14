@@ -18,12 +18,13 @@ public class Main {
         int number = 1;
         for (Element elem : elements) {
             String linkImage = elem.attr("src");
+            String[] elementsLink = linkImage.split("/");
             System.out.println(linkImage);
             String extension = linkImage
                     .replaceAll("^.+\\.", "")
                     .replace("?.+$", "");
-
-            String filePath = pathDirectory + number++ + "." + extension;
+            String filePath = pathDirectory + number++ + " - " + elementsLink[elementsLink.length - 1];
+            //String filePath = pathDirectory + number++ + "." + extension;
             try {
                 URLConnection urlConnection = new URL(linkImage).openConnection();
                 InputStream inputStream = urlConnection.getInputStream();
